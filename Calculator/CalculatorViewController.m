@@ -20,6 +20,7 @@
 @implementation CalculatorViewController
 
 @synthesize display = _display;
+@synthesize historyDisplay = _historyDisplay;
 @synthesize userIsEnteringNumber = _userIsEnteringNumber;
 @synthesize userHasPressedDecimal = _userHasPressedDecimal;
 @synthesize brain = _brain;
@@ -49,6 +50,7 @@
 }
 
 - (IBAction)enterPressed {
+    [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@"%@ ",[self.display text]]];
     [self.brain pushOperand:[self.display.text doubleValue]];
     [self setUserIsEnteringNumber:NO];
     [self setUserHasPressedDecimal:NO];
@@ -57,10 +59,14 @@
 - (IBAction)operatorPressed:(UIButton *)sender {
     if([self userIsEnteringNumber])
        [self enterPressed];
-       
+    [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@"%@ ",[sender currentTitle]]];
     NSString * operation = [sender currentTitle];
     double result = [self.brain performOperation:operation];
     [self.display setText:[NSString stringWithFormat:@"%g", result]];
 }
 
+- (void)viewDidUnload {
+    [self setHistoryDisplay:nil];
+    [super viewDidUnload];
+}
 @end
