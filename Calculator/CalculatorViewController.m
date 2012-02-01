@@ -7,10 +7,12 @@
 //
 
 #import "CalculatorViewController.h"
+#import "CalculatorBrain.h"
 
 @interface CalculatorViewController()
 
 @property (nonatomic) BOOL userIsEnteringNumber;
+@property (strong, nonatomic) CalculatorBrain * brain;
 
 @end
 
@@ -18,6 +20,13 @@
 
 @synthesize display = _display;
 @synthesize userIsEnteringNumber = _userIsEnteringNumber;
+@synthesize brain = _brain;
+
+- (CalculatorBrain *)brain{
+    if(_brain == nil)
+        _brain = [[CalculatorBrain alloc] init];
+    return _brain;
+}
 
 - (IBAction)digitPressed:(UIButton *)sender {
     NSString * digit = [sender currentTitle];
@@ -31,9 +40,17 @@
 }
 
 - (IBAction)enterPressed {
+    [self.brain pushOperand:[self.display.text doubleValue]];
+    [self setUserIsEnteringNumber:NO];
 }
 
 - (IBAction)operatorPressed:(UIButton *)sender {
+    if([self userIsEnteringNumber])
+       [self enterPressed];
+       
+    NSString * operation = [sender currentTitle];
+    double result = [self.brain performOperation:operation];
+    [self.display setText:[NSString stringWithFormat:@"%g", result]];
 }
 
 @end
