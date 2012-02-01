@@ -12,6 +12,7 @@
 @interface CalculatorViewController()
 
 @property (nonatomic) BOOL userIsEnteringNumber;
+@property (nonatomic) BOOL userHasPressedDecimal;
 @property (strong, nonatomic) CalculatorBrain * brain;
 
 @end
@@ -20,6 +21,7 @@
 
 @synthesize display = _display;
 @synthesize userIsEnteringNumber = _userIsEnteringNumber;
+@synthesize userHasPressedDecimal = _userHasPressedDecimal;
 @synthesize brain = _brain;
 
 - (CalculatorBrain *)brain{
@@ -39,9 +41,17 @@
         [self.display setText:[self.display.text stringByAppendingString:digit]];
 }
 
+- (IBAction)decimalPressed {
+    if(![self userHasPressedDecimal]){
+        [self.display setText:[self.display.text stringByAppendingString:@"."]];
+        [self setUserHasPressedDecimal:YES];
+    }
+}
+
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.display.text doubleValue]];
     [self setUserIsEnteringNumber:NO];
+    [self setUserHasPressedDecimal:NO];
 }
 
 - (IBAction)operatorPressed:(UIButton *)sender {
