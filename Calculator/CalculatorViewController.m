@@ -8,53 +8,32 @@
 
 #import "CalculatorViewController.h"
 
+@interface CalculatorViewController()
+
+@property (nonatomic) BOOL userIsEnteringNumber;
+
+@end
+
 @implementation CalculatorViewController
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+@synthesize display = _display;
+@synthesize userIsEnteringNumber = _userIsEnteringNumber;
+
+- (IBAction)digitPressed:(UIButton *)sender {
+    NSString * digit = [sender currentTitle];
+    
+    if(![self userIsEnteringNumber]){
+        [self.display setText:digit];
+        [self setUserIsEnteringNumber:YES];
+    }
+    else
+        [self.display setText:[self.display.text stringByAppendingString:digit]];
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (IBAction)enterPressed {
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+- (IBAction)operatorPressed:(UIButton *)sender {
 }
 
 @end
