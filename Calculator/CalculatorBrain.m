@@ -36,6 +36,10 @@
     return [topOfStack doubleValue];
 }
 
+- (void)clearOperandStack{
+    [self setOperandStack:nil];
+}
+
 - (double)performOperation:(NSString*)operation{
     double result = 0;
     

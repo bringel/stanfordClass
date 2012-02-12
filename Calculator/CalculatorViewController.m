@@ -49,11 +49,35 @@
     }
 }
 
+- (IBAction)backspacePressed {
+    if([self userIsEnteringNumber]){
+        if([self.display.text length] > 1)
+            [self.display setText:[self.display.text substringToIndex:[self.display.text length] - 1]];
+        else
+            [self.display setText:@"0"];
+    }
+}
+
+- (IBAction)signChangePressed {
+    if([self userIsEnteringNumber])
+        [self.display setText:[@"-" stringByAppendingString:[self.display text]]];
+    else 
+        [self.brain performOperation:@"+/-"];
+}
+
 - (IBAction)enterPressed {
     [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@"%@ ",[self.display text]]];
     [self.brain pushOperand:[self.display.text doubleValue]];
     [self setUserIsEnteringNumber:NO];
     [self setUserHasPressedDecimal:NO];
+}
+
+- (IBAction)clearPressed {
+    [self.historyDisplay setText:@""];
+    [self.display setText:@"0"];
+    [self setUserIsEnteringNumber:NO];
+    [self setUserHasPressedDecimal:NO];
+    [self.brain clearOperandStack];
 }
 
 - (IBAction)operatorPressed:(UIButton *)sender {
@@ -65,8 +89,5 @@
     [self.display setText:[NSString stringWithFormat:@"%g", result]];
 }
 
-- (void)viewDidUnload {
-    [self setHistoryDisplay:nil];
-    [super viewDidUnload];
-}
+
 @end
