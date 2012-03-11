@@ -7,54 +7,56 @@
 //
 
 #import "CalculatorViewController.h"
+#import "CalculatorBrain.h"
+
+@interface CalculatorViewController()
+
+@property (nonatomic) BOOL userIsEnteringNumber;
+@property (nonatomic) BOOL userHasPressedDecimal;
+@property (strong, nonatomic) CalculatorBrain * brain;
+
+@end
 
 @implementation CalculatorViewController
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+@synthesize display = _display;
+@synthesize historyDisplay = _historyDisplay;
+@synthesize variablesDisplay = _variablesDisplay;
+@synthesize userIsEnteringNumber = _userIsEnteringNumber;
+@synthesize userHasPressedDecimal = _userHasPressedDecimal;
+@synthesize brain = _brain;
+
+- (CalculatorBrain *)brain{
+    
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (IBAction)digitPressed:(UIButton *)sender {
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (IBAction)operatorPressed:(UIButton *)sender {
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+- (IBAction)enterPressed {
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (IBAction)decimalPressed {
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
+- (IBAction)signChangePressed {
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
+- (IBAction)clearPressed {
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+- (IBAction)undoPressed {
 }
+
+- (IBAction)variablePressed:(UIButton *)sender {
+}
+
+- (IBAction)variableTestPressed:(id)sender {
+}
+
 
 @end
