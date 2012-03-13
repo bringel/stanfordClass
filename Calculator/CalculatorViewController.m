@@ -81,6 +81,7 @@
 - (IBAction)clearPressed {
     [self.display setText:@"0"];
     [self.historyDisplay setText:@"  "];
+    [self.variablesDisplay setText:@""];
     [self.brain clearProgramStack];
     [self setUserHasChangedSign:NO];
     [self setUserIsEnteringNumber:NO];
@@ -100,6 +101,10 @@
 }
 
 - (IBAction)variablePressed:(UIButton *)sender {
+    [self.brain pushVariableAsOperand:[sender currentTitle]];
+    [self.historyDisplay setText:[[self.historyDisplay.text substringToIndex:[self.historyDisplay.text length] -1] stringByAppendingFormat:@"%@  ",[sender currentTitle]]];
+    if(![self.variablesDisplay.text rangeOfString:[sender currentTitle]].length)
+        [self.variablesDisplay setText:[self.variablesDisplay.text stringByAppendingFormat:@"%@ = 0 ",[sender currentTitle]]];
 }
 
 - (IBAction)variableTestPressed:(id)sender {
