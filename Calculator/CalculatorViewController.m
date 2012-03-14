@@ -108,6 +108,35 @@
 }
 
 - (IBAction)variableTestPressed:(id)sender {
+    NSMutableDictionary * variableValues = [[NSMutableDictionary alloc] init];
+    NSSet * variables = [CalculatorBrain variablesUsedInProgram:[self.brain program]];
+    if([[sender currentTitle] isEqualToString:@"Test 1"])
+        for(NSString * variable in variables){
+            [variableValues setValue:nil forKey:variable];
+        }
+    else if([[sender currentTitle] isEqualToString:@"Test 2"]){
+        if([variables containsObject:@"x"]){
+            [variableValues setObject:[NSNumber numberWithDouble:7] forKey:@"x"];
+        }
+        if([variables containsObject:@"a"])
+            [variableValues setObject:[NSNumber numberWithDouble:19] forKey:@"a"];
+        if([variables containsObject:@"b"])
+            [variableValues setObject:[NSNumber numberWithDouble:1] forKey:@"b"];
+    }
+    else if([[sender currentTitle] isEqualToString:@"Test 3"]){
+        if([variables containsObject:@"x"])
+            [variableValues setObject:[NSNumber numberWithDouble: 0] forKey:@"x"];
+        if([variables containsObject:@"a"])
+            [variableValues setObject:[NSNumber numberWithDouble:25] forKey:@"a"];
+        if([variables containsObject:@"b"])
+            [variableValues setObject:[NSNumber numberWithDouble:10] forKey:@"b"];
+    }
+    NSMutableString * newVariables = [[NSMutableString alloc] init];
+    for(NSString * var in variables){
+        [newVariables appendFormat:@"%@ = %@ ",var, [variableValues objectForKey:var]];
+    }
+    [self.variablesDisplay setText:[newVariables copy]];
+    [self.display setText:[NSString stringWithFormat:@"%g",[CalculatorBrain runProgram:[self.brain program] usingVariableValues:variableValues]]];
 }
 
 
