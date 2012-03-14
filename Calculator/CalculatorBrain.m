@@ -85,8 +85,40 @@
         return variables;
 }
 
++ (NSString *)descriptionOfTopOfStack:(NSMutableArray *)stack{
+    NSString * description = @"";
+    id topOfStack = [stack lastObject];
+    if(topOfStack)
+        [stack removeLastObject];
+    
+    if([topOfStack isKindOfClass:[NSNumber class]]){
+        description = [NSString stringWithFormat:@"%g",[topOfStack doubleValue]];
+    }
+    else if([topOfStack isKindOfClass:[NSString class]]) {
+        if([CalculatorBrain isOperation:topOfStack]){
+            if([[CalculatorBrain unaryOperators] containsObject:topOfStack]){
+                description = [NSString stringWithFormat:@"%@(%@)",topOfStack,[CalculatorBrain descriptionOfTopOfStack:stack]];
+            }
+            else if([[CalculatorBrain binaryOperators] containsObject:topOfStack]){
+                description = [NSString stringWithFormat:@"(%@ %@ %@)",[CalculatorBrain descriptionOfTopOfStack:stack],topOfStack,[CalculatorBrain descriptionOfTopOfStack:stack]];
+            }
+            else if([[CalculatorBrain noOperandOperators] containsObject:topOfStack]){
+                description = topOfStack;
+            }
+        }
+        else {
+            description = topOfStack;
+        }
+    }
+    return description;
+    
+}
+
 + (NSString *)descriptionOfProgram:(id)program{
-    return @"Implement this later";
+    NSMutableArray * stack;
+    if([program isKindOfClass:[NSArray class]])
+        stack = [program mutableCopy];
+    return [CalculatorBrain descriptionOfTopOfStack:stack];
 }
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack{
