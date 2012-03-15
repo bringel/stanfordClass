@@ -46,8 +46,8 @@
 
 - (IBAction)enterPressed {
     [self.brain pushOperand:[[self.display text] doubleValue]];
-//    [self.historyDisplay setText:[[self.historyDisplay.text substringToIndex:[self.historyDisplay.text length] - 1] stringByAppendingFormat:@"%@  ",[self.display text]]];
-    [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@" %@",[CalculatorBrain descriptionOfProgram:[self.brain program]]]];
+//    [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@" %@,",[CalculatorBrain descriptionOfProgram:[self.brain program]]]];
+    [self.historyDisplay setText:[CalculatorBrain descriptionOfProgram:[self.brain program]]];
     [self setUserIsEnteringNumber:NO];
     [self setUserHasPressedDecimal:NO];
     [self setUserHasChangedSign:NO];
@@ -56,9 +56,11 @@
 - (IBAction)operatorPressed:(UIButton *)sender {
     if([self userIsEnteringNumber])
         [self enterPressed];
-//    [self.historyDisplay setText:[[self.historyDisplay.text substringToIndex:[self.historyDisplay.text length] -1] stringByAppendingFormat:@"%@ =",[sender currentTitle]]];
     [self.display setText:[NSString stringWithFormat:@"%g",[self.brain performOperation:[sender currentTitle]]]];
-    [self.historyDisplay setText:[CalculatorBrain descriptionOfProgram:[self.brain program]]];
+//    if([self userIsEnteringNumber])
+//        [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@" %@,",[CalculatorBrain descriptionOfProgram:[self.brain program]]]];
+//    else 
+        [self.historyDisplay setText:[CalculatorBrain descriptionOfProgram:[self.brain program]]];
 }
 
 - (IBAction)decimalPressed {
@@ -104,7 +106,7 @@
 
 - (IBAction)variablePressed:(UIButton *)sender {
     [self.brain pushVariableAsOperand:[sender currentTitle]];
-    [self.historyDisplay setText:[[self.historyDisplay.text substringToIndex:[self.historyDisplay.text length] -1] stringByAppendingFormat:@"%@  ",[sender currentTitle]]];
+    [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@" %@",[CalculatorBrain descriptionOfProgram:[self.brain program]]]];
     if(![self.variablesDisplay.text rangeOfString:[sender currentTitle]].length)
         [self.variablesDisplay setText:[self.variablesDisplay.text stringByAppendingFormat:@"%@ = 0 ",[sender currentTitle]]];
 }

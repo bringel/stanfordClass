@@ -90,17 +90,22 @@
     id topOfStack = [stack lastObject];
     if(topOfStack)
         [stack removeLastObject];
-    
     if([topOfStack isKindOfClass:[NSNumber class]]){
         description = [NSString stringWithFormat:@"%g",[topOfStack doubleValue]];
     }
     else if([topOfStack isKindOfClass:[NSString class]]) {
         if([CalculatorBrain isOperation:topOfStack]){
             if([[CalculatorBrain unaryOperators] containsObject:topOfStack]){
-                description = [NSString stringWithFormat:@"%@(%@)",topOfStack,[CalculatorBrain descriptionOfTopOfStack:stack]];
+                NSString * insideOfOperation = [CalculatorBrain descriptionOfTopOfStack:stack];
+                if([insideOfOperation hasPrefix:@"("]){
+                    insideOfOperation = [insideOfOperation substringWithRange:NSMakeRange(1, [insideOfOperation length] - 2)];
+                }
+                description = [NSString stringWithFormat:@"%@(%@)",topOfStack,insideOfOperation];
             }
             else if([[CalculatorBrain binaryOperators] containsObject:topOfStack]){
-                description = [NSString stringWithFormat:@"(%@ %@ %@)",[CalculatorBrain descriptionOfTopOfStack:stack],topOfStack,[CalculatorBrain descriptionOfTopOfStack:stack]];
+                id operandTwo = [CalculatorBrain descriptionOfTopOfStack:stack];
+                id operandOne = [CalculatorBrain descriptionOfTopOfStack:stack];
+                description = [NSString stringWithFormat:@"(%@ %@ %@)",operandOne,topOfStack,operandTwo];
             }
             else if([[CalculatorBrain noOperandOperators] containsObject:topOfStack]){
                 description = topOfStack;
@@ -118,7 +123,11 @@
     NSMutableArray * stack;
     if([program isKindOfClass:[NSArray class]])
         stack = [program mutableCopy];
-    return [CalculatorBrain descriptionOfTopOfStack:stack];
+    NSString * topDescription = [self descriptionOfTopOfStack:stack];
+    if([stack count] == 0)
+        return topDescription;
+    else
+        return [[NSString stringWithFormat:@"%@, ",[self descriptionOfProgram:stack]]stringByAppendingString:topDescription];
 }
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack{
