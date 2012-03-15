@@ -93,14 +93,21 @@
 }
 
 - (IBAction)undoPressed {
-    if([self.display.text length] > 1){
-        [self.display setText:[self.display.text substringToIndex:[self.display.text length] - 1]];
+    if([self userIsEnteringNumber]){
+        if([self.display.text length] > 1){
+            [self.display setText:[self.display.text substringToIndex:[self.display.text length] - 1]];
+        }
+        else {
+            [self.display setText:[NSString stringWithFormat:@"%g",[CalculatorBrain runProgram:[self.brain program]]]];
+            [self setUserIsEnteringNumber:NO];
+            [self setUserHasPressedDecimal:NO];
+            [self setUserHasChangedSign:NO];
+        }
     }
     else {
-        [self.display setText:@"0"];
-        [self setUserIsEnteringNumber:NO];
-        [self setUserHasPressedDecimal:NO];
-        [self setUserHasChangedSign:NO];
+        [self.brain removeItemFromProgramStack];
+        [self.display setText:[NSString stringWithFormat:@"%g",[CalculatorBrain runProgram:[self.brain program]]]];
+        [self.historyDisplay setText:[CalculatorBrain descriptionOfProgram:[self.brain program]]];
     }
 }
 

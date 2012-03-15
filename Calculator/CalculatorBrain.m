@@ -41,6 +41,11 @@
     return [CalculatorBrain runProgram:[self program]];
 }
 
+- (void)removeItemFromProgramStack{
+    if([self.programStack lastObject])
+        [self.programStack removeLastObject];
+}
+
 - (void)clearProgramStack{
     [self setProgramStack:nil];
 }
@@ -127,7 +132,7 @@
     if([stack count] == 0)
         return topDescription;
     else
-        return [[NSString stringWithFormat:@"%@, ",[self descriptionOfProgram:stack]]stringByAppendingString:topDescription];
+        return [topDescription stringByAppendingFormat:@", %@",[CalculatorBrain descriptionOfProgram:stack]];
 }
 
 + (double)popOperandOffProgramStack:(NSMutableArray *)stack{

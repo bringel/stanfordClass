@@ -13,6 +13,7 @@
 - (void)pushOperand:(double)operand;
 - (void)pushVariableAsOperand:(NSString *)variable;
 - (double)performOperation:(NSString *)operation;
+- (void)removeItemFromProgramStack;
 - (void)clearProgramStack;
 
 @property (nonatomic, readonly) id program;
