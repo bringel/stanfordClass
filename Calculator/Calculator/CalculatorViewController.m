@@ -22,7 +22,6 @@
 
 @synthesize display = _display;
 @synthesize historyDisplay = _historyDisplay;
-@synthesize variablesDisplay = _variablesDisplay;
 @synthesize userIsEnteringNumber = _userIsEnteringNumber;
 @synthesize userHasChangedSign = _userHasChangedSign;
 @synthesize userHasPressedDecimal = _userHasPressedDecimal;
@@ -85,7 +84,6 @@
 - (IBAction)clearPressed {
     [self.display setText:@"0"];
     [self.historyDisplay setText:@"  "];
-    [self.variablesDisplay setText:@""];
     [self.brain clearProgramStack];
     [self setUserHasChangedSign:NO];
     [self setUserIsEnteringNumber:NO];
@@ -114,41 +112,6 @@
 - (IBAction)variablePressed:(UIButton *)sender {
     [self.brain pushVariableAsOperand:[sender currentTitle]];
     [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@" %@",[CalculatorBrain descriptionOfProgram:[self.brain program]]]];
-    if(![self.variablesDisplay.text rangeOfString:[sender currentTitle]].length)
-        [self.variablesDisplay setText:[self.variablesDisplay.text stringByAppendingFormat:@"%@ = 0 ",[sender currentTitle]]];
 }
-
-- (IBAction)variableTestPressed:(id)sender {
-    NSMutableDictionary * variableValues = [[NSMutableDictionary alloc] init];
-    NSSet * variables = [CalculatorBrain variablesUsedInProgram:[self.brain program]];
-    if([[sender currentTitle] isEqualToString:@"Test 1"])
-        for(NSString * variable in variables){
-            [variableValues setValue:nil forKey:variable];
-        }
-    else if([[sender currentTitle] isEqualToString:@"Test 2"]){
-        if([variables containsObject:@"x"]){
-            [variableValues setObject:[NSNumber numberWithDouble:7] forKey:@"x"];
-        }
-        if([variables containsObject:@"a"])
-            [variableValues setObject:[NSNumber numberWithDouble:19] forKey:@"a"];
-        if([variables containsObject:@"b"])
-            [variableValues setObject:[NSNumber numberWithDouble:1] forKey:@"b"];
-    }
-    else if([[sender currentTitle] isEqualToString:@"Test 3"]){
-        if([variables containsObject:@"x"])
-            [variableValues setObject:[NSNumber numberWithDouble: 0] forKey:@"x"];
-        if([variables containsObject:@"a"])
-            [variableValues setObject:[NSNumber numberWithDouble:25] forKey:@"a"];
-        if([variables containsObject:@"b"])
-            [variableValues setObject:[NSNumber numberWithDouble:10] forKey:@"b"];
-    }
-    NSMutableString * newVariables = [[NSMutableString alloc] init];
-    for(NSString * var in variables){
-        [newVariables appendFormat:@"%@ = %@ ",var, [variableValues objectForKey:var]];
-    }
-    [self.variablesDisplay setText:[newVariables copy]];
-    [self.display setText:[NSString stringWithFormat:@"%g",[CalculatorBrain runProgram:[self.brain program] usingVariableValues:variableValues]]];
-}
-
 
 @end
