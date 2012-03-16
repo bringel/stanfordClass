@@ -11,5 +11,4 @@
 
 @interface GraphView : UIView
 
-
 @end

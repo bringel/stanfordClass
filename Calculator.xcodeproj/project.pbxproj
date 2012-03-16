@@ -24,6 +24,7 @@
 /* Begin PBXFileReference section */
 		2F562693150D3F2A00B61A5E /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		2F562694150D3F2A00B61A5E /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
+		2F5A10A21512E5250017D7D4 /* GraphViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphViewDataSource.h; sourceTree = "<group>"; };
 		2FD591EA1512778200BDCB0F /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
 		2FD591EB1512778200BDCB0F /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		2FD591EE1512785700BDCB0F /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 				2FEB6B9114D8689E00099C63 /* MainStoryboard.storyboard */,
 				2FD591EE1512785700BDCB0F /* AxesDrawer.h */,
 				2FD591F115127D0A00BDCB0F /* GraphView.h */,
+				2F5A10A21512E5250017D7D4 /* GraphViewDataSource.h */,
 				2FD591F215127D0A00BDCB0F /* GraphView.m */,
 				2FD591EF1512785700BDCB0F /* AxesDrawer.m */,
 				2FD591EA1512778200BDCB0F /* GraphViewController.h */,

@@ -8,8 +8,15 @@
 
 #import "GraphView.h"
 
+@interface GraphView()
+
+@property (nonatomic) CGPoint origin;
+
+@end
+
 @implementation GraphView
 
+@synthesize origin = _origin;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -21,10 +28,37 @@
     return self;
 }
 
+- (void)awakeFromNib{
+    [self setOrigin:[self center]];
+    UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self addGestureRecognizer:tapGesture];
+    [tapGesture setNumberOfTapsRequired:3];
+    UIPanGestureRecognizer * panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    [self addGestureRecognizer:panGesture];
+}
+
 
 - (void)drawRect:(CGRect)rect
 {
-    [AxesDrawer drawAxesInRect:[self bounds] originAtPoint:[self center] scale:[self contentScaleFactor]];
+    [AxesDrawer drawAxesInRect:[self bounds] originAtPoint:[self origin] scale:[self contentScaleFactor]];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)gesture{
+    if(gesture.state == UIGestureRecognizerStateEnded){
+        CGPoint tapLocation = [gesture locationInView:self];
+        CGPoint origin = CGPointMake(self.origin.x +tapLocation.x, self.origin.y+tapLocation.y);
+        [self setOrigin:origin];
+        [self setNeedsDisplay];
+    }
+}
+//this doesn't work yet
+- (void)pan:(UIPanGestureRecognizer *)gesture{
+    if((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)){
+        CGPoint translation = [gesture translationInView:self.superview];
+         [self setOrigin:CGPointMake(self.origin.x+translation.x, self.origin.y+translation.y)];
+        [gesture setTranslation:CGPointZero inView:self];
+        [self setNeedsDisplay];
+    }
 }
 
 
