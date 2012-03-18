@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FaceViewDataSource <NSObject>
+
+- (float)happinessForFaceView;
+
+@end
+
 @interface FaceView : UIView
 
 @property (nonatomic) CGFloat scale;
+@property (nonatomic, weak) id <FaceViewDataSource> dataSource;
 
 - (void)pinch:(UIPinchGestureRecognizer *)gesture;
 

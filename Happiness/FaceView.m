@@ -11,6 +11,7 @@
 @implementation FaceView
 
 @synthesize scale = _scale;
+@synthesize dataSource = _dataSource;
 
 #define DEFAULT_SCALE 0.90
 
@@ -73,7 +74,7 @@
     CGFloat size = self.bounds.size.width /2;
     if(self.bounds.size.height < self.bounds.size.width)
         size = self.bounds.size.height /2;
-    size *=[self scale];
+    size *=[self scale] ;
     
     CGContextSetLineWidth(context, 5.0);
     [[UIColor blueColor] setStroke];
@@ -106,7 +107,9 @@
     CGPoint mouthCP2 = mouthEnd;
     mouthCP2.x -= MOUTH_H * size *2/3;
     
-    float smile = 0;
+    float smile = [self.dataSource happinessForFaceView];
+    if(smile > 1) smile = 1;
+    if(smile < -1) smile = -1;
     
     CGFloat smileOffset = MOUTH_SMILE * size * smile;
     mouthCP1.y += smileOffset;
