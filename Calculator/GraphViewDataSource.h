@@ -10,6 +10,6 @@
 
 @protocol GraphViewDataSource <NSObject>
 
-- (void)setFunctionForGraphView;
+- (NSString *)setFunctionForGraphView;
 
 @end

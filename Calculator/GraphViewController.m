@@ -7,12 +7,25 @@
 //
 
 #import "GraphViewController.h"
+#import "GraphViewDataSource.h"
 
-@interface GraphViewController ()
+@interface GraphViewController () <GraphViewDataSource>
+
 
 @end
 
 @implementation GraphViewController
 
+@synthesize graph = _graph;
+@synthesize function = _function;
+
+- (void)setGraph:(GraphView *)graph{
+    _graph = graph;
+    [self.graph setDataSource:self];
+}
+
+- (NSString *)setFunctionForGraphView{
+    return [self function];
+}
 
 @end

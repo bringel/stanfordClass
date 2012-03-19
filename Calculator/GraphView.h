@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AxesDrawer.h"
+#import "GraphViewDataSource.h"
+
 
 @interface GraphView : UIView
+
+@property (nonatomic, weak) id <GraphViewDataSource> dataSource;
 
 @end

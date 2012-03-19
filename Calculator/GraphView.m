@@ -17,6 +17,7 @@
 @implementation GraphView
 
 @synthesize origin = _origin;
+@synthesize dataSource = _dataSource;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -36,12 +37,13 @@
     UIPanGestureRecognizer * panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     [self addGestureRecognizer:panGesture];
 }
-
+#define DEFAULT_SCALE 10.0
 
 - (void)drawRect:(CGRect)rect
 {
-    [AxesDrawer drawAxesInRect:[self bounds] originAtPoint:[self origin] scale:[self contentScaleFactor]];
+    [AxesDrawer drawAxesInRect:[self bounds] originAtPoint:[self origin] scale:DEFAULT_SCALE];
 }
+//this doesn't work yet
 
 - (void)handleTap:(UITapGestureRecognizer *)gesture{
     if(gesture.state == UIGestureRecognizerStateEnded){
@@ -51,7 +53,7 @@
         [self setNeedsDisplay];
     }
 }
-//this doesn't work yet
+
 - (void)pan:(UIPanGestureRecognizer *)gesture{
     if((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)){
         CGPoint translation = [gesture translationInView:self.superview];

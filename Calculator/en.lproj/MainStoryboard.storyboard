@@ -401,7 +401,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Kf6-wX-WZ4" kind="push" id="etF-Pf-OkT"/>
+                                    <segue destination="Kf6-wX-WZ4" kind="push" identifier="ShowGraph" id="etF-Pf-OkT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -414,7 +414,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="312" y="28"/>
+            <point key="canvasLocation" x="388" y="106"/>
         </scene>
         <!--Graph View Controller - Graph-->
         <scene sceneID="Ft9-S4-HB4">
@@ -434,9 +434,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Graph" id="U2U-i1-3Ta"/>
+                    <connections>
+                        <outlet property="graph" destination="f85-L9-gkB" id="GhE-5V-Y5R"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="723" y="28"/>
+            <point key="canvasLocation" x="873" y="106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CAS-Ty-ijD">
@@ -454,7 +457,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-160" y="28"/>
+            <point key="canvasLocation" x="-112" y="106"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

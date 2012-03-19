@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphViewController.h"
 
 @interface CalculatorViewController()
 
@@ -112,6 +113,12 @@
 - (IBAction)variablePressed:(UIButton *)sender {
     [self.brain pushVariableAsOperand:[sender currentTitle]];
     [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@" %@",[CalculatorBrain descriptionOfProgram:[self.brain program]]]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"ShowGraph"]){
+        [segue.destinationViewController setFunction:[self.historyDisplay text]];
+    }
 }
 
 @end

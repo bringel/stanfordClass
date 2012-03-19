@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphView.h"
 
 @interface GraphViewController : UIViewController
 
+@property (nonatomic, strong) NSString * function;
+@property (nonatomic, weak) IBOutlet GraphView * graph;
 
 @end
