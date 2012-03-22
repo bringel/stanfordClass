@@ -11,7 +11,7 @@
 
 @interface GraphViewController : UIViewController
 
-@property (nonatomic, strong) NSString * function;
+@property (nonatomic, strong) NSArray * function;
 @property (nonatomic, weak) IBOutlet GraphView * graph;
 
 @end

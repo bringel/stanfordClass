@@ -117,7 +117,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"ShowGraph"]){
-        [segue.destinationViewController setFunction:[self.historyDisplay text]];
+        [segue.destinationViewController setFunction:self.brain.program];
     }
 }
 

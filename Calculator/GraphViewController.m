@@ -24,8 +24,9 @@
     [self.graph setDataSource:self];
 }
 
-- (NSString *)setFunctionForGraphView{
+- (NSArray *)setFunctionForGraphView{
     return [self function];
 }
+
 
 @end
