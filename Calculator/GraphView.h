@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphViewDataSource.h"
 
 @interface GraphView : UIView
+
+@property (nonatomic) id <GraphViewDataSource> dataSource;
 
 @end
