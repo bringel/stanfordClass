@@ -80,13 +80,24 @@
 		2FEB6B8514D8689D00099C63 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+
 				2FEB6B8E14D8689D00099C63 /* CalculatorAppDelegate.h */,
 				2FEB6B8F14D8689E00099C63 /* CalculatorAppDelegate.m */,
 				2FEB6B9114D8689E00099C63 /* MainStoryboard.storyboard */,
+				2FD591EE1512785700BDCB0F /* AxesDrawer.h */,
+				2FD591EF1512785700BDCB0F /* AxesDrawer.m */,
+				2FEB6B8E14D8689D00099C63 /* CalculatorAppDelegate.h */,
+				2FEB6B8F14D8689E00099C63 /* CalculatorAppDelegate.m */,
 				2F562693150D3F2A00B61A5E /* CalculatorBrain.h */,
 				2F562694150D3F2A00B61A5E /* CalculatorBrain.m */,
 				2FEB6B9414D8689E00099C63 /* CalculatorViewController.h */,
 				2FEB6B9514D8689E00099C63 /* CalculatorViewController.m */,
+				2FD591F115127D0A00BDCB0F /* GraphView.h */,
+				2FD591F215127D0A00BDCB0F /* GraphView.m */,
+				2FD591EA1512778200BDCB0F /* GraphViewController.h */,
+				2FD591EB1512778200BDCB0F /* GraphViewController.m */,
+				2F5A10A21512E5250017D7D4 /* GraphViewDataSource.h */,
+				2FEB6B9114D8689E00099C63 /* MainStoryboard.storyboard */,
 				2FEB6B8614D8689D00099C63 /* Supporting Files */,
 			);
 			path = Calculator;
