@@ -30,7 +30,8 @@
     [self addGestureRecognizer:pinch];
     [self addGestureRecognizer:pan];
     [self addGestureRecognizer:tap];
-    [self setOrigin:[self center]];
+    CGPoint origin = CGPointMake(self.bounds.size.width /2, self.bounds.size.height /2);
+    [self setOrigin:origin];
     [self setNeedsDisplay];
 }
 
@@ -69,7 +70,8 @@
     for(float pixel = 0.0f; pixel <= width; pixel ++){
         float point = (pixel - self.origin.x) / self.scale;
         NSDictionary *variableValues = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithFloat:point], @"x", nil];
-        double result = [CalculatorBrain runProgram:function usingVariableValues:variableValues];
+        double result = -1 *[CalculatorBrain runProgram:function usingVariableValues:variableValues];
+        NSLog(@"%g",result);
         [functionValues setObject:[NSNumber numberWithFloat:result] forKey:[NSNumber numberWithFloat:point]];
     }
     
@@ -89,7 +91,7 @@
         CGFloat yValue = [[functionValues objectForKey:[NSNumber numberWithFloat:point]] floatValue];
         point *= self.scale;
         yValue *= self.scale;
-        point += self.origin.x;
+        point +=self.origin.x;
         yValue += self.origin.y;
         CGContextAddLineToPoint(context, point, yValue);
         CGContextMoveToPoint(context, point, yValue);
