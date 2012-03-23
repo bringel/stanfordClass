@@ -27,6 +27,7 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    [tap setNumberOfTapsRequired:3];
     [self addGestureRecognizer:pinch];
     [self addGestureRecognizer:pan];
     [self addGestureRecognizer:tap];
@@ -57,7 +58,7 @@
 
 - (void)setScale:(CGFloat)scale{
     if(scale != _scale)
-        _scale *= scale;
+        _scale = scale;
 }
 
 //for some reason this method is off by one every time. have to investigate that
@@ -71,7 +72,6 @@
         float point = (pixel - self.origin.x) / self.scale;
         NSDictionary *variableValues = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithFloat:point], @"x", nil];
         double result = -1 *[CalculatorBrain runProgram:function usingVariableValues:variableValues];
-        NSLog(@"%g",result);
         [functionValues setObject:[NSNumber numberWithFloat:result] forKey:[NSNumber numberWithFloat:point]];
     }
     
@@ -101,6 +101,35 @@
     CGContextStrokePath(context);
     
 }
+
+- (void)pinch:(UIPinchGestureRecognizer *)gesture{
+    if((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)){
+        CGFloat scale = gesture.scale;
+        [self setScale:self.scale * scale];
+        gesture.scale = 1;
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)pan:(UIPanGestureRecognizer *)gesture{
+    if((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)){
+        CGFloat x = (self.origin.x + [gesture translationInView:self].x);
+        CGFloat y = (self.origin.y + [gesture translationInView:self].y);
+        [self setOrigin:CGPointMake(x, y)];
+        [gesture setTranslation:CGPointZero inView:self];
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)tap:(UITapGestureRecognizer *)gesture{
+    if(gesture.state == UIGestureRecognizerStateEnded){
+        CGPoint location = [gesture locationOfTouch:0 inView:self];
+        [self setOrigin:CGPointMake(location.x, location.y)];
+        [self setNeedsDisplay];
+    }
+}
+
+
 
 
 @end
