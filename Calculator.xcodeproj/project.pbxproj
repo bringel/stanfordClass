@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2F562695150D3F2A00B61A5E /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F562694150D3F2A00B61A5E /* CalculatorBrain.m */; };
+		2FCBF55D151CADD400ADD9BC /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBF55C151CADD400ADD9BC /* GraphView.m */; };
 		2FD591EC1512778200BDCB0F /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD591EB1512778200BDCB0F /* GraphViewController.m */; };
 		2FD591F01512785700BDCB0F /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD591EF1512785700BDCB0F /* AxesDrawer.m */; };
-		2FD591F315127D0A00BDCB0F /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD591F215127D0A00BDCB0F /* GraphView.m */; };
 		2FEB6B8014D8689D00099C63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEB6B7F14D8689D00099C63 /* UIKit.framework */; };
 		2FEB6B8214D8689D00099C63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEB6B8114D8689D00099C63 /* Foundation.framework */; };
 		2FEB6B8414D8689D00099C63 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FEB6B8314D8689D00099C63 /* CoreGraphics.framework */; };
@@ -25,12 +25,12 @@
 		2F562693150D3F2A00B61A5E /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		2F562694150D3F2A00B61A5E /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
 		2F5A10A21512E5250017D7D4 /* GraphViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphViewDataSource.h; sourceTree = "<group>"; };
+		2FCBF55B151CADD400ADD9BC /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
+		2FCBF55C151CADD400ADD9BC /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
 		2FD591EA1512778200BDCB0F /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
 		2FD591EB1512778200BDCB0F /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		2FD591EE1512785700BDCB0F /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
 		2FD591EF1512785700BDCB0F /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
-		2FD591F115127D0A00BDCB0F /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
-		2FD591F215127D0A00BDCB0F /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
 		2FEB6B7B14D8689C00099C63 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FEB6B7F14D8689D00099C63 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2FEB6B8114D8689D00099C63 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -90,20 +90,20 @@
 		2FEB6B8514D8689D00099C63 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				2FD591EE1512785700BDCB0F /* AxesDrawer.h */,
+				2FD591EF1512785700BDCB0F /* AxesDrawer.m */,
 				2FEB6B8E14D8689D00099C63 /* CalculatorAppDelegate.h */,
 				2FEB6B8F14D8689E00099C63 /* CalculatorAppDelegate.m */,
-				2FEB6B9114D8689E00099C63 /* MainStoryboard.storyboard */,
-				2FD591EE1512785700BDCB0F /* AxesDrawer.h */,
-				2FD591F115127D0A00BDCB0F /* GraphView.h */,
-				2F5A10A21512E5250017D7D4 /* GraphViewDataSource.h */,
-				2FD591F215127D0A00BDCB0F /* GraphView.m */,
-				2FD591EF1512785700BDCB0F /* AxesDrawer.m */,
-				2FD591EA1512778200BDCB0F /* GraphViewController.h */,
-				2FD591EB1512778200BDCB0F /* GraphViewController.m */,
 				2F562693150D3F2A00B61A5E /* CalculatorBrain.h */,
 				2F562694150D3F2A00B61A5E /* CalculatorBrain.m */,
 				2FEB6B9414D8689E00099C63 /* CalculatorViewController.h */,
 				2FEB6B9514D8689E00099C63 /* CalculatorViewController.m */,
+				2FD591EA1512778200BDCB0F /* GraphViewController.h */,
+				2FD591EB1512778200BDCB0F /* GraphViewController.m */,
+				2F5A10A21512E5250017D7D4 /* GraphViewDataSource.h */,
+				2FCBF55B151CADD400ADD9BC /* GraphView.h */,
+				2FCBF55C151CADD400ADD9BC /* GraphView.m */,
+				2FEB6B9114D8689E00099C63 /* MainStoryboard.storyboard */,
 				2FEB6B8614D8689D00099C63 /* Supporting Files */,
 			);
 			path = Calculator;
@@ -188,7 +188,7 @@
 				2F562695150D3F2A00B61A5E /* CalculatorBrain.m in Sources */,
 				2FD591EC1512778200BDCB0F /* GraphViewController.m in Sources */,
 				2FD591F01512785700BDCB0F /* AxesDrawer.m in Sources */,
-				2FD591F315127D0A00BDCB0F /* GraphView.m in Sources */,
+				2FCBF55D151CADD400ADD9BC /* GraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
