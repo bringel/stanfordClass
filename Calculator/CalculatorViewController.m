@@ -28,6 +28,12 @@
 @synthesize userHasPressedDecimal = _userHasPressedDecimal;
 @synthesize brain = _brain;
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    if([self splitViewController])
+        [self splitViewController].delegate = self;
+}
+
 - (CalculatorBrain *)brain{
     if(_brain == nil)
         _brain = [[CalculatorBrain alloc] init];
@@ -113,6 +119,14 @@
 - (IBAction)variablePressed:(UIButton *)sender {
     [self.brain pushVariableAsOperand:[sender currentTitle]];
     [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@" %@",[CalculatorBrain descriptionOfProgram:[self.brain program]]]];
+}
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    return YES;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation{
+    return UIInterfaceOrientationIsPortrait(orientation);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
