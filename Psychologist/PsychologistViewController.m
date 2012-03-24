@@ -17,9 +17,19 @@
 
 @synthesize diagnosis = _diagnosis;
 
+- (HappinessViewController *)splitViewHappinesViewController{
+    id happiness = [self.splitViewController.viewControllers lastObject];
+    if(![happiness isKindOfClass:[HappinessViewController class]])
+        happiness = nil;
+    return happiness;
+}
+
 - (void)setAndShowDiagnosis:(int)diagnosis{
     self.diagnosis = diagnosis;
-    [self performSegueWithIdentifier:@"showDiagnosis" sender:self];
+    if([self splitViewHappinesViewController])
+        [self splitViewHappinesViewController].happiness = diagnosis;
+    else 
+        [self performSegueWithIdentifier:@"showDiagnosis" sender:self];
 }
 
 - (IBAction)flying {

@@ -325,23 +325,6 @@
             <point key="canvasLocation" x="1126" y="1612"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="FaceView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FaceView.h"/>
-        </class>
-        <class className="HappinessViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HappinessViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="faceView" candidateClass="FaceView"/>
-            </relationships>
-        </class>
-        <class className="PsychologistViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PsychologistViewController.h"/>
-        </class>
-        <class className="RotatableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RotatableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
