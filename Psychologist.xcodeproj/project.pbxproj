@@ -42,6 +42,7 @@
 		2F7E12C8151D7BEE00B06CBA /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
 		2F7E12C9151D7BEE00B06CBA /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
 		2F7E12CB151D7D1A00B06CBA /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		2F7E12CE151D83EE00B06CBA /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +89,7 @@
 		2F091904151659520081CC55 /* Psychologist */ = {
 			isa = PBXGroup;
 			children = (
+				2F7E12CE151D83EE00B06CBA /* SplitViewBarButtonItemPresenter.h */,
 				2F09192C15165BB70081CC55 /* FaceView.h */,
 				2F09192D15165BB70081CC55 /* FaceView.m */,
 				2F09192E15165BB70081CC55 /* HappinessViewController.h */,

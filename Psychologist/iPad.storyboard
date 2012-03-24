@@ -22,7 +22,7 @@
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Jra-ta-0h1">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items/>
                             </toolbar>
                         </subviews>
@@ -31,10 +31,11 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="faceView" destination="2p7-sW-iaE" id="Pnr-6F-bD0"/>
+                        <outlet property="toolbar" destination="Jra-ta-0h1" id="3ir-rE-VCv"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-279" y="412"/>
+            <point key="canvasLocation" x="-991" y="644"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ECr-xc-0pg">
@@ -49,7 +50,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-291" y="-541"/>
+            <point key="canvasLocation" x="-1003" y="-309"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="pqg-G1-0xs">
@@ -63,7 +64,7 @@
                     </connections>
                 </splitViewController>
             </objects>
-            <point key="canvasLocation" x="-1261" y="-56"/>
+            <point key="canvasLocation" x="-1973" y="176"/>
         </scene>
         <!--Rotatable View Controller - Psychologist-->
         <scene sceneID="JEN-vk-2Kh">
@@ -111,7 +112,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="405" y="-634"/>
+            <point key="canvasLocation" x="-307" y="-402"/>
         </scene>
         <!--Psychologist View Controller - Dr. Freud-->
         <scene sceneID="S0a-Iv-XH4">
@@ -193,7 +194,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="924" y="-634"/>
+            <point key="canvasLocation" x="212" y="-402"/>
         </scene>
         <!--Psychologist View Controller - Dr. Pill-->
         <scene sceneID="wjd-fM-67J">
@@ -254,7 +255,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="924" y="438"/>
+            <point key="canvasLocation" x="212" y="670"/>
         </scene>
     </scenes>
     <classes>
@@ -265,6 +266,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HappinessViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="faceView" candidateClass="FaceView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="PsychologistViewController" superclassName="UIViewController">

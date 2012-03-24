@@ -12,6 +12,7 @@
 @interface HappinessViewController () <FaceViewDataSource>
 
 @property (weak, nonatomic) IBOutlet FaceView * faceView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end
 
@@ -19,10 +20,24 @@
 
 @synthesize happiness = _happiness;
 @synthesize faceView = _faceView;
+@synthesize toolbar = _toolbar;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 - (void)setHappiness:(int)happiness{
     _happiness = happiness;
     [self.faceView setNeedsDisplay];
+}
+
+- (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem{
+    if(_splitViewBarButtonItem != splitViewBarButtonItem){
+        NSMutableArray *toolbarItems = [[self.toolbar items] mutableCopy];
+        if(_splitViewBarButtonItem)
+            [toolbarItems removeObject:_splitViewBarButtonItem];
+        if(splitViewBarButtonItem)
+            [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+        self.toolbar.items = toolbarItems;
+        _splitViewBarButtonItem = splitViewBarButtonItem;
+    }
 }
 
 - (void)setFaceView:(FaceView *)faceView{
@@ -41,6 +56,7 @@
 - (float)happinessForFaceView{
     return (self.happiness - 50) / 50.0;
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
     return YES;
