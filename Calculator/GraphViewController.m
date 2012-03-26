@@ -27,6 +27,18 @@
     [self.graph setDataSource:self];
 }
 
+- (void)setFunction:(NSArray *)function{
+    if(_function != function){
+        _function = function;
+        [self.graph setNeedsDisplay];
+        NSMutableArray *toolbarItems = [[self.toolbar items] mutableCopy];
+        [toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
+        [toolbarItems addObject:[[UIBarButtonItem alloc] initWithTitle:[CalculatorBrain descriptionOfProgram:self.function] style:UIBarButtonItemStylePlain target:nil action:nil]];
+        [toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
+        self.toolbar.items = [toolbarItems copy];
+    }
+}
+
 - (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem{
     NSMutableArray *toobarItems = [[[self toolbar] items] mutableCopy];
     if(_splitViewBarButtonItem != splitViewBarButtonItem){
@@ -34,9 +46,6 @@
             [toobarItems removeObject:_splitViewBarButtonItem];
         if(splitViewBarButtonItem){
             [toobarItems insertObject:splitViewBarButtonItem atIndex:0];
-            [toobarItems insertObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] atIndex:1];
-            [toobarItems insertObject:[[UIBarButtonItem alloc] initWithTitle:[CalculatorBrain descriptionOfProgram:self.function] style:UIBarButtonItemStylePlain target:nil action:nil] atIndex:2];
-            [toobarItems insertObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] atIndex:3];
         }
         self.toolbar.items = [toobarItems copy];
         _splitViewBarButtonItem = splitViewBarButtonItem;

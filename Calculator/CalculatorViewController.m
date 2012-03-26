@@ -27,7 +27,6 @@
 @synthesize userHasChangedSign = _userHasChangedSign;
 @synthesize userHasPressedDecimal = _userHasPressedDecimal;
 @synthesize brain = _brain;
-@synthesize toolbar = _toolbar;
 
 - (void)awakeFromNib{
     [super awakeFromNib];
@@ -120,6 +119,15 @@
 - (IBAction)variablePressed:(UIButton *)sender {
     [self.brain pushVariableAsOperand:[sender currentTitle]];
     [self.historyDisplay setText:[self.historyDisplay.text stringByAppendingFormat:@" %@",[CalculatorBrain descriptionOfProgram:[self.brain program]]]];
+}
+
+- (IBAction)graphPressed {
+    if([self splitViewController]){
+        [[self.splitViewController.viewControllers lastObject] setFunction:[self.brain program]];
+    }
+    else {
+        [self.splitViewController performSegueWithIdentifier:@"ShowGraph" sender:self];
+    }
 }
 
 - (void)viewDidLoad{
