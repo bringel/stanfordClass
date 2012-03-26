@@ -27,6 +27,7 @@
 @synthesize userHasChangedSign = _userHasChangedSign;
 @synthesize userHasPressedDecimal = _userHasPressedDecimal;
 @synthesize brain = _brain;
+@synthesize toolbar = _toolbar;
 
 - (void)awakeFromNib{
     [super awakeFromNib];
@@ -134,7 +135,7 @@
 }
 
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc{
-    [barButtonItem setTitle:[CalculatorBrain descriptionOfProgram:self.brain.program]];
+    [barButtonItem setTitle:@"Calculator"];
     [[self.splitViewController.viewControllers lastObject] setSplitViewBarButtonItem: barButtonItem];
 }
 

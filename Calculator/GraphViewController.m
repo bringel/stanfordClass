@@ -8,6 +8,7 @@
 
 #import "GraphViewController.h"
 #import "GraphViewDataSource.h"
+#import "CalculatorBrain.h"
 
 @interface GraphViewController () <GraphViewDataSource>
 
@@ -31,8 +32,12 @@
     if(_splitViewBarButtonItem != splitViewBarButtonItem){
         if(_splitViewBarButtonItem)
             [toobarItems removeObject:_splitViewBarButtonItem];
-        if(splitViewBarButtonItem)
+        if(splitViewBarButtonItem){
             [toobarItems insertObject:splitViewBarButtonItem atIndex:0];
+            [toobarItems insertObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] atIndex:1];
+            [toobarItems insertObject:[[UIBarButtonItem alloc] initWithTitle:[CalculatorBrain descriptionOfProgram:self.function] style:UIBarButtonItemStylePlain target:nil action:nil] atIndex:2];
+            [toobarItems insertObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] atIndex:3];
+        }
         self.toolbar.items = [toobarItems copy];
         _splitViewBarButtonItem = splitViewBarButtonItem;
     }
