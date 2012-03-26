@@ -13,5 +13,7 @@
 
 @property (nonatomic, strong) NSArray * function;
 @property (nonatomic, weak) IBOutlet GraphView * graph;
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, strong) UIBarButtonItem *splitViewBarButtonItem;
 
 @end

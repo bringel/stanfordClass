@@ -31,6 +31,7 @@
                     <toolbarItems/>
                     <connections>
                         <outlet property="graph" destination="u6R-Et-upJ" id="iff-o9-jXW"/>
+                        <outlet property="toolbar" destination="iW7-Ru-Amt" id="beb-0T-afq"/>
                     </connections>
                 </viewController>
             </objects>
@@ -479,6 +480,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="graph" candidateClass="GraphView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
     </classes>

@@ -18,10 +18,24 @@
 
 @synthesize graph = _graph;
 @synthesize function = _function;
+@synthesize toolbar = _toolbar;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 - (void)setGraph:(GraphView *)graph{
     _graph = graph;
     [self.graph setDataSource:self];
+}
+
+- (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem{
+    NSMutableArray *toobarItems = [[[self toolbar] items] mutableCopy];
+    if(_splitViewBarButtonItem != splitViewBarButtonItem){
+        if(_splitViewBarButtonItem)
+            [toobarItems removeObject:_splitViewBarButtonItem];
+        if(splitViewBarButtonItem)
+            [toobarItems insertObject:splitViewBarButtonItem atIndex:0];
+        self.toolbar.items = [toobarItems copy];
+        _splitViewBarButtonItem = splitViewBarButtonItem;
+    }
 }
 
 - (NSArray *)setFunctionForGraphView{
