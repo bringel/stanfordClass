@@ -14,6 +14,7 @@
 
 @property (nonatomic) CGPoint origin;
 @property (nonatomic) CGFloat scale;
+@property (nonatomic, strong) NSUserDefaults *userDefaults;
 
 @end
 
@@ -22,6 +23,13 @@
 @synthesize dataSource = _dataSource;
 @synthesize origin = _origin;
 @synthesize scale = _scale;
+@synthesize userDefaults = _userDefaults;
+
+- (NSUserDefaults *)userDefaults{
+    if(_userDefaults == nil)
+        _userDefaults = [[NSUserDefaults alloc] init];
+    return _userDefaults;
+}
 
 - (void)setup{
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
@@ -32,7 +40,17 @@
     [self addGestureRecognizer:pan];
     [self addGestureRecognizer:tap];
     CGPoint origin = CGPointMake(self.bounds.size.width /2, self.bounds.size.height /2);
-    [self setOrigin:origin];
+//    CGPoint savedOrigin = [[self.userDefaults valueForKey:@"User Scale"] CGPointValue];
+//    if(savedOrigin.x){
+//        if(origin.x == savedOrigin.x && origin.y == savedOrigin.y)
+//            [self setOrigin:origin];
+//        else 
+//            [self setOrigin:savedOrigin];
+//    }
+//    else
+        [self setOrigin:origin];
+    CGFloat savedScale = [self.userDefaults floatForKey:@"User Scale"];
+    [self setScale:savedScale];
     [self setNeedsDisplay];
 }
 
@@ -57,8 +75,16 @@
 }
 
 - (void)setScale:(CGFloat)scale{
-    if(scale != _scale)
+    if(scale != _scale){
         _scale = scale;
+        [self.userDefaults setFloat:scale forKey:@"User Scale"];
+    }
+}
+
+- (void)setOrigin:(CGPoint)origin{
+    _origin = origin;
+    NSValue *newOrigin = [NSValue valueWithCGPoint:origin];
+    [self.userDefaults setObject:newOrigin forKey:@"User Origin"];
 }
 
 //for some reason this method is off by one every time. have to investigate that

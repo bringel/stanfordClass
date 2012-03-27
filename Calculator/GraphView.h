@@ -17,4 +17,5 @@
 - (void)pan:(UIPanGestureRecognizer *)gesture;
 - (void)tap:(UITapGestureRecognizer *)gesture;
 
+
 @end

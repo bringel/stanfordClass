@@ -27,11 +27,20 @@
     [self.graph setDataSource:self];
 }
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    if(self.splitViewController)
+        self.splitViewController.delegate = self;
+}
+
 - (void)setFunction:(NSArray *)function{
     if(_function != function){
         _function = function;
         [self.graph setNeedsDisplay];
         NSMutableArray *toolbarItems = [[self.toolbar items] mutableCopy];
+        while ([toolbarItems count] > 1) {
+            [toolbarItems removeLastObject];
+        }
         [toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
         [toolbarItems addObject:[[UIBarButtonItem alloc] initWithTitle:[CalculatorBrain descriptionOfProgram:self.function] style:UIBarButtonItemStylePlain target:nil action:nil]];
         [toolbarItems addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil]];
@@ -56,8 +65,26 @@
     return [self function];
 }
 
+- (void)viewDidLoad{
+    if([self splitViewController])
+        self.splitViewController.delegate = self;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
     return YES;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation{
+    return UIInterfaceOrientationIsPortrait(orientation);
+}
+
+- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc{
+    [barButtonItem setTitle:@"Calculator"];
+    [[self.splitViewController.viewControllers lastObject] setSplitViewBarButtonItem: barButtonItem];
+}
+
+- (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem{
+    [[self.splitViewController.viewControllers lastObject] setSplitViewBarButtonItem:nil];
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GraphView.h"
 
-@interface GraphViewController : UIViewController
+@interface GraphViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray * function;
 @property (nonatomic, weak) IBOutlet GraphView * graph;
