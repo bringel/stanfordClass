@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet FaceView * faceView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (strong, nonatomic) UIPopoverController *popoverVC;
 
 @end
 
@@ -22,6 +23,14 @@
 @synthesize faceView = _faceView;
 @synthesize toolbar = _toolbar;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+@synthesize popoverVC = _popoverVC;
+
+- (UIPopoverController *)popoverVC{
+    if(_popoverVC == nil){
+        _popoverVC = [[UIPopoverController alloc] initWithContentViewController:[self.splitViewController.viewControllers objectAtIndex:0]];
+    }
+    return _popoverVC;
+}
 
 - (void)setHappiness:(int)happiness{
     _happiness = happiness;
@@ -33,8 +42,12 @@
         NSMutableArray *toolbarItems = [[self.toolbar items] mutableCopy];
         if(_splitViewBarButtonItem)
             [toolbarItems removeObject:_splitViewBarButtonItem];
-        if(splitViewBarButtonItem)
+        if(splitViewBarButtonItem){
+            [splitViewBarButtonItem setTitle:@"Psychologist"];
             [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+            [splitViewBarButtonItem setTarget:self];
+            [splitViewBarButtonItem setAction:@selector(showPsychologistPopover:)];
+        }
         self.toolbar.items = toolbarItems;
         _splitViewBarButtonItem = splitViewBarButtonItem;
     }
@@ -51,6 +64,10 @@
     CGPoint translation = [gesture translationInView:self.faceView];
     [self setHappiness:self.happiness -= translation.y /2];
     [gesture setTranslation:CGPointZero inView:self.faceView];
+}
+
+- (IBAction)showPsychologistPopover:(id)sender{
+    [self.popoverVC presentPopoverFromBarButtonItem:self.splitViewBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (float)happinessForFaceView{
